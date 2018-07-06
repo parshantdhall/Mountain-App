@@ -1,0 +1,25 @@
+//Importing the Abstracts Folder
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+//Importing the Base Folder
+@import "./base/reset";
+@import "./base/typography";
+@import "./base/animations";
+
+//importing th components
+@import "./components/button";
+@import "./components/page-headings";
+@import "./components/font-area";
+@import "./components/testimonial-content";
+@import "./components/form";
+
+//Imorting the layout
+@import "./layout/header";
+@import "./layout/grid";
+@import "./layout/footer";
+
+//Importing the page
+@import "./page/home"
+
+

@@ -1,0 +1,11 @@
+body {
+    font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
+    color: $color-secondary;
+}
+
+.font-area__content > [class ^= "fa"] {
+    padding-bottom: 2rem;
+    color: $color-primary-light;
+}
+

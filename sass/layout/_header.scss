@@ -1,0 +1,98 @@
+.hero {
+    background-image: url("../img/main.jpg");
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.navbar {
+    position: relative;
+    background-color: transparent;
+    width: 100%;
+    height: 23%;
+    animation: fade-in 2.5s ease;
+
+     &__logo {
+        color: $color-white-light;
+        font-size: $medium;
+        font-weight: $weight-bold;
+        position: absolute;
+        left: 7%;
+        top: 2.2rem;
+     }
+
+     //Menu
+
+     &__menu {
+         list-style: none;
+         position: absolute;
+         float: right;
+         right: 4%;
+         top: 2.4rem;
+
+         li {
+             display: inline-block;
+             margin-right: 2rem;
+
+             a{
+                 &:link,
+                 &:visited {
+                    text-decoration: none;
+                    color: $color-white-light;
+                    font-size: $small;
+                    position: relative;
+                 }
+
+                 &:hover::before {
+                     content: '';
+                     position: absolute;
+                     top: 45%;
+                     left: -30%;
+                     height: .2rem;
+                     width: .9rem;
+                     background-color: $color-white-light;                    
+                 }
+                 
+                 &:hover::after {
+                    content: '';
+                    position: absolute;
+                    top: 45%;
+                    left: 108%;
+                    height: .2rem;
+                    width: .9rem;
+                    background-color: $color-white-light;                    
+                }
+             }
+         }
+     }
+
+     //CLEAR FIX
+     @include clear-fix;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    animation: fade-in-up 1s ease;
+    animation-delay: .6s;
+    backface-visibility: hidden;
+    animation-fill-mode: backwards;
+
+    .heading {
+        color: #fff;
+        margin-bottom: 1.3rem;
+
+        &--primary {
+            font-size: $x-large;
+        }
+
+        &--secondary {
+            font-size: $medium;
+            font-weight: $weight-medium;
+        }
+    }
+}

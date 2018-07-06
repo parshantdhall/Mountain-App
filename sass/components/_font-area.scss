@@ -1,0 +1,12 @@
+.font-area {
+    width: 78%;
+    margin: 0 auto;
+    
+    &__content {
+        text-align: center;
+
+        & > .section-content__heading--primary {
+            font-weight: $weight-medium;
+        }
+    }
+}

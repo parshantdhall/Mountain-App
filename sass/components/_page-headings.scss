@@ -1,0 +1,28 @@
+.section-content {
+    margin: 0 auto 7% auto;
+    text-align: center;
+    width: 45rem;
+
+    &__heading {
+        margin-bottom: 2rem;
+
+        &--primary {
+            font-size: $large;
+            font-weight: 600;
+            letter-spacing: -.1rem;
+        }
+
+        &--secondary {
+            font-size: $x-small;
+            font-weight: $weight-medium;
+            line-height: 1.8rem;
+        }
+    }
+
+    &__end-line {
+        margin: 0 auto;
+        width: 20rem;
+        height: .2rem;
+        background-color: $color-primary;
+    }
+}

@@ -1,0 +1,30 @@
+section {
+    padding: 8rem 0;
+}
+.destinations {
+    width: 100%;
+    background-color: white;
+}
+
+.img-gallary {
+    width: 85%;
+    margin: 0 auto;
+}
+
+img[src ^= "./img"] {
+    width: 100%;
+    height: 20rem;
+}
+
+.tour-packages {
+    background-color: $color-grey-light;
+}
+
+.learn-more {
+    background-color: $color-grey-light;
+}
+
+footer {
+    padding: 2rem 1.5rem;
+    background-color: #607d8b;
+}

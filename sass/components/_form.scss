@@ -1,0 +1,13 @@
+.learn-more__form {
+    margin: 0 auto;
+    width: 65%;
+    text-align: center;
+
+    & input[type="email"] {
+        width: 52%;
+        height: 4rem;
+        padding: 1rem;
+        font-size: $small;
+        margin-right: 2rem;
+    }
+}

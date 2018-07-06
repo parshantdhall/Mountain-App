@@ -1,0 +1,16 @@
+.testimonial-content {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+
+    &__para-primary {
+        font-size: $medium;
+        font-weight: $weight-medium;
+        text-align: center;
+    }
+
+    &__author {
+        font-size: $small;
+        padding-top: 2rem;
+    }
+}

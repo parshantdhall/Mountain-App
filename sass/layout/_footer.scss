@@ -1,0 +1,18 @@
+.footer-content__para {
+    color: $color-white-light;
+    font-size: .8rem;
+}
+
+.footer-content__social-icons{
+        text-align: right;
+
+        & [class ^= fab] {
+        color: $color-white-light;
+        padding-right: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}

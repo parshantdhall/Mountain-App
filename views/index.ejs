@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mountain Site</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <span class="navbar__logo"><%=logoFound[0].name%></span>
+            <!-- Edit LOGO -->
+            <% if(currentUser !== undefined) { %>
+            <div class="edit edit--logo"><a href="/<%= logoFound[0]._id %>/editlogo"><i class="fas fa-pencil-alt fa-2x"></i></a></div>
+            <% } %>
+            <!-- Edit LOGO Ends -->
+            <ul class="navbar__menu">
+
+            <% if(currentUser !== undefined) { %>
+                <li>
+                    <a href="#" >Signed In as <%= currentUser.username %></a>
+                </li>
+                <li>
+                        <a href="/logout" >Logout</a>
+                </li>
+                <% } %>
+            <li>
+                <a href="#">Tours</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            </ul>
+        </nav>
+
+        <!-- Navbar ENDS HERE!! -->
+
+        <div class="hero-content">
+            <h1 class="heading heading--primary">Mountain Travel</h1>
+            <h3 class="heading heading--secondary">Unmissable Adventure Tours Around The World</h3>
+            <button class="btn btn--hero">contact us now</button>
+        </div>
+                    <!-- Edit LOGO -->
+                    <% if(currentUser !== undefined) { %>
+                    <div class="edit edit--hero-content"><a href="#"><i class="fas fa-pencil-alt fa-2x"></i></a></div>
+                    <% } %>
+                    <!-- Edit LOGO Ends -->
+    </header>
+    <!-- Main Section Starts -->
+    <main>
+        <section class="destinations">
+            <div class="section-content">
+                <h1 class="section-content__heading section-content__heading--primary">Some Of Our Destinations:</h1>
+                <p class="section-content__heading section-content__heading--secondary">Tired of the ocean? Are the plains too plain? Come along with us on one of our mountain adventures. Here
+                    are some pictures from people who have had elevated experiences with us.</p>
+                <div class="section-content__end-line"></div>
+            </div>
+            <div class="img-gallary">
+                <div class="row">
+                    <div class="col-1-of-3">
+                        <img src="./img/mountain1.jpg" alt="mountain1">
+                    </div>
+                    <div class="col-2-of-3">
+                        <img src="./img/mountain2.jpg" alt="mountain2">
+                    </div>
+                </div>
+                <!-- Second Row of Image Gallary -->
+                <div class="row">
+                    <div class="col-2-of-3">
+                        <img src="./img/mountain3.jpg" alt="mountain3">
+                    </div>
+                    <div class="col-1-of-3">
+                        <img src="./img/mountain4.jpg" alt="mountain4">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tour-packages">
+            <div class="section-content">
+                <h1 class="section-content__heading section-content__heading--primary">Tour Packages</h1>
+                <p class="section-content__heading section-content__heading--secondary">We offer a variety of mountaineering packages. Whether you've climbed Everest or don't even know what a mountain
+                    is, we've got the perfect vacation for you.</p>
+                <div class="section-content__end-line"></div>
+            </div>
+            <div class="font-area">
+                <div class="row">
+                    <div class="col-1-of-2">
+                        <div class="font-area__content">
+                            <i class="far fa-compass fa-7x"></i>
+                            <h1 class="section-content__heading section-content__heading--primary">Guided Trips</h1>
+                            <p class="section-content__heading section-content__heading--secondary">Looking for the complete experience? Take a tour with one of our experts. They'll show you secrets
+                                that you're likely to miss otherwise.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-1-of-2">
+                        <div class="font-area__content">
+                            <i class="fa fa-camera-retro fa-7x"></i>
+                            <h1 class="section-content__heading section-content__heading--primary">Photo Trips</h1>
+                            <p class="section-content__heading section-content__heading--secondary">Want to experience nature's beauty without all of that annoying exercise? Take a photo tour on
+                                one of our mountain buses.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-1-of-2">
+                        <div class="font-area__content">
+                            <i class="fa fa-bicycle fa-7x"></i>
+                            <h1 class="section-content__heading section-content__heading--primary">Biking Trips</h1>
+                            <p class="section-content__heading section-content__heading--secondary">If bicycles are more your speed, consider taking a tour through one of our mountain bike paths.
+                                We'll provide the bikes, and lunch too!</p>
+                        </div>
+                    </div>
+
+                    <div class="col-1-of-2">
+                        <div class="font-area__content">
+                            <i class="fa fa-flag-checkered fa-7x"></i>
+                            <h1 class="section-content__heading section-content__heading--primary">Racing Trips</h1>
+                            <p class="section-content__heading section-content__heading--secondary">Got a competitive spirit? Sign up for one of our mountain marathons! Try to reach the summit
+                                before anyone else.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="section-content">
+                <h1 class="section-content__heading section-content__heading--primary">Testimonials From Our Adventurers:</h1>
+                <div class="section-content__end-line"></div>
+            </div>
+
+            <div class="testimonial-content">
+                <div class="row">
+                    <h3 class="testimonial-content__para-primary">Wow! This tour made me realize how much I love mountains. After going on one of these tours, I can safely
+                        say that they are my favorite geographic feature, and my favorite word that starts with M.
+                    </h3>
+                    <p class="testimonial-content__author">- Colt Steele</p>
+                </div>
+
+                <div class="row">
+                    <h3 class="testimonial-content__para-primary">I never understood why people cared so much about mountains. But then I went on one of these tours. Now
+                        I can't understand people who don't care about mountains!
+                    </h3>
+                    <p class="testimonial-content__author">- Elie Schoppik</p>
+                </div>
+
+                <div class="row">
+                    <h3 class="testimonial-content__para-primary">If you want to understand the universe, head to the mountains. I mean, seriously. It's like, woah. You
+                        know? It's like that.
+                    </h3>
+                    <p class="testimonial-content__author">- Tim Garcia</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="learn-more" id="contact">
+            <div class="section-content">
+                <h1 class="section-content__heading section-content__heading--primary">Learn More</h1>
+                <p class="section-content__heading section-content__heading--secondary">Want to know about our upcoming mountain-related events,
+                     or come to one of our mixers? Just sign up for our mailing list. No spam from us, we promise! Except for the spam we give 
+                     you to keep up
+                     your energy while you're hiking through the mountains. We have tons of that.</p>
+                <div class="section-content__end-line"></div>
+            </div>
+            <form class="learn-more__form">
+                <input type="email" placeholder="Email">
+                <button class="btn">Subscribe now</button>
+            </form>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="row">
+                    <div class="col-1-of-4">
+                        <p class="footer-content__para">IMAGES COURTESY OF UNSPLASH.</p>
+                    </div>
+                    <div class="col-2-of-4">
+                        <p class="footer-content__para">WHY ARE YOU EVEN READING THIS?! THERE'S NEVER ANYTHING INTERESTING IN THE FOOTER!</p>
+                    </div>
+                    <div class="col-1-of-4">
+                        <div class="footer-content__social-icons">
+                                <i class="fab fa-twitter fa-3x"></i>
+                                <i class="fab fa-facebook fa-3x"></i>
+                                <i class="fab fa-instagram fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
