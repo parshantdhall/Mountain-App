@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "compile:sass": "node-sass ./sass/main.scss ./public/stylesheet/style.css"
+    "compile:sass": "node-sass ./sass/main.scss ./public/stylesheet/style.css -w"
   },
   "author": "Parshant Dhall",
   "license": "ISC",

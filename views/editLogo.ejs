@@ -1,8 +1,12 @@
 <% include ./partials/header %>
-    <h1 class="edit_logo">Edit Logo</h1>
-    <form action="/<%= logoEdit._id %>/editlogo?_method=PUT" method="POST" class="form_logo">
-        <input type="text" name="logoName" value="<%= logoEdit.name %>">
-        <button type="submit"> Submit </button>
+<div class="container">
+<h1 class="section-content__heading--primary" >Edit Logo</h1>
+<div class="section-content__end-line"></div>
+    <div class="container__form" >
+    <form action="/<%= logoEdit._id %>/editlogo?_method=PUT" method="POST" >
+    <input type="text" name="logoName" value="<%= logoEdit.name %>">
+    <button type="Submit">Submit <i class="fas fa-arrow-right"></i></button>
     </form>
-
+    </div>
+</div>
 <% include ./partials/footer %>

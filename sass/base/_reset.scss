@@ -32,3 +32,13 @@ body {
     transform: translate(-50%, -50%);
     }
 }
+
+.container {
+    margin: 0 auto;
+    padding: 2rem;
+    width: 75%;
+    text-align: center;
+    position: relative;
+
+    @include clear-fix;
+}

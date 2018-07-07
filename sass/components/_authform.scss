@@ -1,0 +1,38 @@
+.container__form {
+    margin: 0 auto;
+    width: 50%; 
+}
+form {
+    margin-top: $medium;
+    text-align: center;
+
+    input[name="username"],
+    input[name="password"],
+    input[name="logoName"] {
+    display: block;
+    width: 80%;
+    height: 1.5rem;
+    padding: 1.5rem;
+    margin: 0 auto $small auto;
+}
+        [type="submit"] {
+        padding: .7rem 2.7rem;
+        border: .15rem solid $color-primary;
+        background: none;
+        cursor: pointer;
+        font-weight: $weight-medium;
+        font-size: $small;
+        text-align: center;
+
+        &:hover > i[class ^= "fa"] {
+            transform: translateX(40%);
+            transition: all .3s ease;
+        }
+    }
+
+}
+
+.container > .section-content__end-line {
+    margin-top: $small;
+}
+

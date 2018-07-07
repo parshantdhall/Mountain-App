@@ -11,18 +11,30 @@ body {
 .edit {
   position: absolute;
   border-radius: 50%;
-  padding: .3rem .8rem; }
+  padding: .3rem; }
   .edit a:link,
   .edit a:visited {
     text-decoration: none;
     color: #555555; }
   .edit--logo {
-    top: 1.3rem;
+    top: 2.2rem;
     left: 23%; }
   .edit--hero-content {
     top: 35%;
     left: 69%;
     transform: translate(-50%, -50%); }
+
+.container {
+  margin: 0 auto;
+  padding: 2rem;
+  width: 75%;
+  text-align: center;
+  position: relative; }
+  .container::before, .container::after {
+    content: "";
+    display: table; }
+  .container::after {
+    clear: both; }
 
 body {
   font-size: 62.5%;
@@ -112,6 +124,36 @@ body {
     padding: 1rem;
     font-size: 1.2rem;
     margin-right: 2rem; }
+
+.container__form {
+  margin: 0 auto;
+  width: 50%; }
+
+form {
+  margin-top: 1.6rem;
+  text-align: center; }
+  form input[name="username"],
+  form input[name="password"],
+  form input[name="logoName"] {
+    display: block;
+    width: 80%;
+    height: 1.5rem;
+    padding: 1.5rem;
+    margin: 0 auto 1.2rem auto; }
+  form [type="submit"] {
+    padding: .7rem 2.7rem;
+    border: 0.15rem solid #3A57B8;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center; }
+    form [type="submit"]:hover > i[class^="fa"] {
+      transform: translateX(40%);
+      transition: all .3s ease; }
+
+.container > .section-content__end-line {
+  margin-top: 1.2rem; }
 
 .hero {
   background-image: url("../img/main.jpg");
