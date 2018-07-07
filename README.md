@@ -9,3 +9,7 @@ To run this app you need to follow the below steps-:
 Routes -:
 Login page -: /login, 
 Sign-up page -: /register
+
+For forgot password configuration 
+Configure your Gmail and password into the node mailer configuration in auth_routes view.
+Note -: Don't forget to  Turn On Less secure app access in Gmail, Otherwise it will not work.
