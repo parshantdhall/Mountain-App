@@ -18,14 +18,23 @@
         var username = req.body.username,
             password = req.body.password,
             email    = req.body.email;
-            User.register(new User({username: username, email: email}), password, function(err, user) {
-                if(err) {
-                    console.log(err);
-                    res.redirect("/register");
-                }else {
-                    passport.authenticate("local")(req, res, function() {
-                        res.redirect("/");
-                    });
+            //If the user with that same email already exists and it will show error...
+            User.findOne({ email: email }, function(err, user){
+                if(!user){
+                  User.register(new User({username: username, email: email}), password, function(err, user) {
+                    if(err) {
+                        console.log(err);
+                        res.redirect("/register");
+                    }else {
+                        passport.authenticate("local")(req, res, function() {
+                            res.redirect("/");
+                        });
+                    }
+                });
+               }
+                else {
+                  console.log("Account With that email is already exists");
+                  res.redirect("back");
                 }
             });
       });
@@ -78,13 +87,13 @@
               var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail', 
                 auth: {
-                  user: 'Your Email',
-                  pass: ''//Password
+                  user: 'parshant.dhall@gmail.com',
+                  pass: 'Mnipd&a98'
                 }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'Your Email',
+                from: 'parshant.dhall@gmail.com',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -143,13 +152,13 @@
               var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail', 
                 auth: {
-                  user: 'Your Email',
-                  pass: '' //Password
+                  user: 'parshant.dhall@gmail.com',
+                  pass: 'Mnipd&a98' 
                 }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'Your Email',
+                from: 'parshant.dhall@gmail.com',
                 subject: 'Your password has been changed',
                 text: 'Hello,\n\n' +
                   'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'

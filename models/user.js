@@ -6,7 +6,9 @@ var userSchema = new mongoose.Schema({
     password: String,
     email: {type: String, unique: true, required: true},
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+    secretToken: String,
+    confirmed: {type: Boolean, default: false}
 });
 
 userSchema.plugin(passportLocalMongoose);
