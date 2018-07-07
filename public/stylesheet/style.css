@@ -133,8 +133,9 @@ form {
   margin-top: 1.6rem;
   text-align: center; }
   form input[name="username"],
-  form input[name="password"],
-  form input[name="logoName"] {
+  form input[type="password"],
+  form input[name="logoName"],
+  form input[name="email"] {
     display: block;
     width: 80%;
     height: 1.5rem;

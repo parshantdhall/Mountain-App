@@ -7,8 +7,9 @@ form {
     text-align: center;
 
     input[name="username"],
-    input[name="password"],
-    input[name="logoName"] {
+    input[type="password"],
+    input[name="logoName"],
+    input[name="email"] {
     display: block;
     width: 80%;
     height: 1.5rem;

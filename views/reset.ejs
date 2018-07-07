@@ -1,0 +1,16 @@
+<% include ./partials/header %>
+
+<div class="container">
+<h1 class="section-content__heading--primary" >Reset Password</h1>
+<div class="section-content__end-line"></div>
+    <div class="container__form" >
+    <form action="/reset/<%= token %>" method="POST" >
+    <input type="password" name="password" placeholder="New password" autofocus="autofocus">
+    <input type="password" name="confirm" placeholder="Confirm password" >    
+    <button type="Submit">Submit <i class="fas fa-arrow-right"></i></button>
+    </form>
+    </div>
+</div>
+
+<% include ./partials/footer %>
+

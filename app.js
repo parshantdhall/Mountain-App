@@ -6,7 +6,10 @@ var express               = require("express"),
     localStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     expressSession        = require("express-session"),
-    mongoose              = require("mongoose");
+    mongoose              = require("mongoose"),
+    async                 = require("async"),
+    nodemailer            = require("nodemailer"),
+    crypto                = require("crypto");
     
     //Importing the models
     var User = require("./models/user");
