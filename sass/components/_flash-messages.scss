@@ -1,0 +1,14 @@
+.flash-message {
+    padding: 1.5rem 2rem;
+    font-size: $medium;
+    font-weight: $weight-medium;
+    color: #fff;
+
+     &--error {
+        background-color: $color-error;
+     }
+
+     &--success {
+         background-color: $color-success;
+     }
+}

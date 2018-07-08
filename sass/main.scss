@@ -7,13 +7,14 @@
 @import "./base/typography";
 @import "./base/animations";
 
-//importing th components
+//importing the components
 @import "./components/button";
 @import "./components/page-headings";
 @import "./components/font-area";
 @import "./components/testimonial-content";
 @import "./components/form";
 @import "./components/authform";
+@import "./components/flash-messages";
 //Imorting the layout
 @import "./layout/header";
 @import "./layout/grid";

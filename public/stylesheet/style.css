@@ -148,13 +148,31 @@ form {
     cursor: pointer;
     font-weight: 500;
     font-size: 1.2rem;
-    text-align: center; }
+    text-align: center;
+    margin-right: 1rem; }
     form [type="submit"]:hover > i[class^="fa"] {
       transform: translateX(40%);
       transition: all .3s ease; }
+  form a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    padding-bottom: .3rem; }
+    form a:hover {
+      border-bottom: 1px solid #3A57B8; }
 
 .container > .section-content__end-line {
   margin-top: 1.2rem; }
+
+.flash-message {
+  padding: 1.5rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff; }
+  .flash-message--error {
+    background-color: rgba(255, 0, 0, 0.3); }
+  .flash-message--success {
+    background-color: rgba(0, 255, 0, 0.3); }
 
 .hero {
   background-image: url("../img/main.jpg");

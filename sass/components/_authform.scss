@@ -24,10 +24,21 @@ form {
         font-weight: $weight-medium;
         font-size: $small;
         text-align: center;
+        margin-right: 1rem;
 
         &:hover > i[class ^= "fa"] {
             transform: translateX(40%);
             transition: all .3s ease;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+        font-size: $x-small;
+        padding-bottom: .3rem;
+        &:hover {
+            border-bottom: 1px solid $color-primary;
         }
     }
 

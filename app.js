@@ -9,7 +9,8 @@ var express               = require("express"),
     mongoose              = require("mongoose"),
     async                 = require("async"),
     nodemailer            = require("nodemailer"),
-    crypto                = require("crypto");
+    crypto                = require("crypto"),
+    flash                 = require("connect-flash");
     
     //Importing the models
     var User = require("./models/user");
@@ -35,6 +36,7 @@ var express               = require("express"),
         resave: false,
         saveUninitialized: false
     }));
+    app.use(flash());  //Using Flash messages
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -44,6 +46,8 @@ var express               = require("express"),
 
     app.use(function(req, res, next) {
         res.locals.currentUser = req.user;
+        res.locals.errormessage = req.flash("error");
+        res.locals.successmessage = req.flash("success");
         next();
     });
 

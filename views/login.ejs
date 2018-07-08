@@ -1,13 +1,14 @@
 <% include ./partials/header %>
 
 <div class="container">
-<h1 class="section-content__heading--primary" >Log In</h1>
+<h1 class="section-content__heading--primary">Log In</h1>
 <div class="section-content__end-line"></div>
     <div class="container__form" >
     <form action="/login" method="POST" >
-    <input type="text" name="username" placeholder="username" >
-    <input type="password" name="password" placeholder="password" >
+    <input type="text" name="username" placeholder="username" required>
+    <input type="password" name="password" placeholder="password" required>
     <button type="Submit">Submit <i class="fas fa-arrow-right"></i></button>
+    <a href="/forgot">Forgot Password</a>
     </form>
     </div>
 </div>

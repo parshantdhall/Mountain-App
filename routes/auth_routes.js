@@ -24,6 +24,7 @@
                   User.register(new User({username: username, email: email}), password, function(err, user) {
                     if(err) {
                         console.log(err);
+                        req.flash("error", err.message);
                         res.redirect("/register");
                     }else {
                         passport.authenticate("local")(req, res, function() {
@@ -33,7 +34,7 @@
                 });
                }
                 else {
-                  console.log("Account With that email is already exists");
+                  req.flash("error", "Account With that email is already exists");
                   res.redirect("back");
                 }
             });
@@ -52,6 +53,7 @@
       //Setting the Sign Out 
       router.get("/logout", function(req, res) {
           req.logout();
+          req.flash("success", "Successfully Logged You Out!");
           res.redirect("/");
       });
 
@@ -71,7 +73,7 @@
             function(token, done) {
               User.findOne({ email: req.body.email }, function(err, user) {
                 if (!user) {
-                  console.log('error', 'No account with that email address exists.');
+                  req.flash("error",'No account with that email address exists.');
                   return res.redirect('/forgot');
                 }
         
@@ -85,15 +87,17 @@
             },
             function(token, user, done) {
               var smtpTransport = nodemailer.createTransport({
-                service: 'Gmail', 
+                host: 'mail.smtp2go.com',
+                port: 2525,
+                secure: false, // true for 465, false for other ports
                 auth: {
-                  user: 'parshant.dhall@gmail.com',
-                  pass: 'Mnipd&a98'
-                }
+                      user: process.env.USR, // generated ethereal user
+                      pass: process.env.PSWD // generated ethereal password
+                  }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'parshant.dhall@gmail.com',
+                from: 'support@mountainapp.com',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -102,7 +106,7 @@
               };
               smtpTransport.sendMail(mailOptions, function(err) {
                 console.log('mail sent');
-                console.log('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+                req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
                 done(err, 'done');
               });
             }
@@ -116,7 +120,7 @@
         router.get('/reset/:token', function(req, res) {
           User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
             if (!user) {
-              console.log('error', 'Password reset token is invalid or has expired.');
+              req.flash('error', 'Password reset token is invalid or has expired.');
               return res.redirect('/forgot');
             }
             res.render('reset', {token: req.params.token});
@@ -128,7 +132,7 @@
             function(done) {
               User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
                 if (!user) {
-                  console.log('error', 'Password reset token is invalid or has expired.');
+                  req.flash('error', 'Password reset token is invalid or has expired.');
                   return res.redirect('back');
                 }
                 if(req.body.password === req.body.confirm) {
@@ -143,28 +147,30 @@
                     });
                   })
                 } else {
-                    console.log("error", "Passwords do not match.");
+                    req.flash("error", "Passwords do not match.");
                     return res.redirect('back');
                 }
               });
             },
             function(user, done) {
               var smtpTransport = nodemailer.createTransport({
-                service: 'Gmail', 
+                host: 'mail.smtp2go.com',
+                port: 2525,
+                secure: false, // true for 465, false for other ports
                 auth: {
-                  user: 'parshant.dhall@gmail.com',
-                  pass: 'Mnipd&a98' 
-                }
+                      user: 'parshantdhall', // generated ethereal user
+                      pass: 'Dhall@010' // generated ethereal password
+                  }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'parshant.dhall@gmail.com',
+                from: 'support@mountainapp.com',
                 subject: 'Your password has been changed',
                 text: 'Hello,\n\n' +
                   'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
               };
               smtpTransport.sendMail(mailOptions, function(err) {
-                console.log('success', 'Success! Your password has been changed.');
+                req.flash('success', 'Success! Your password has been changed.');
                 done(err);
               });
             }
