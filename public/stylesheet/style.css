@@ -135,7 +135,8 @@ form {
   form input[name="username"],
   form input[type="password"],
   form input[name="logoName"],
-  form input[name="email"] {
+  form input[name="email"],
+  form input[name="secretToken"] {
     display: block;
     width: 80%;
     height: 1.5rem;

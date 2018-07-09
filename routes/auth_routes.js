@@ -1,15 +1,16 @@
     /*---------Authentication Routes-------------*/
-    var express    = require("express"),
-        router     = express.Router(),
-        passport   = require("passport"),
-        async      = require("async"),
-        nodemailer = require("nodemailer"),
-        crypto     = require("crypto");
+    var express      = require("express"),
+        router       = express.Router(),
+        passport     = require("passport"),
+        middleware = require("../middleware/middleware"),
+        async        = require("async"),
+        nodemailer   = require("nodemailer"),
+        crypto       = require("crypto"),
+        randomString = require("randomstring");
     //Importing the models
     var User = require("../models/user"); 
-    var Logo = require("../models/logo");
 
-    // Setting Up the sign Up
+    //Setting Up the sign Up
     router.get("/register", function(req, res) {
         res.render("register");
     });
@@ -18,17 +19,43 @@
         var username = req.body.username,
             password = req.body.password,
             email    = req.body.email;
+            var secretToken = randomString.generate();
             //If the user with that same email already exists and it will show error...
             User.findOne({ email: email }, function(err, user){
                 if(!user){
-                  User.register(new User({username: username, email: email}), password, function(err, user) {
+                  User.register(new User({username: username, email: email, secretToken: secretToken}), password, function(err, user) {
                     if(err) {
                         console.log(err);
-                        req.flash("error", err.message);
+                        req.flash("error", err.message); //Same Username Error
                         res.redirect("/register");
                     }else {
-                        passport.authenticate("local")(req, res, function() {
-                            res.redirect("/");
+                        //======Sending the Confirmation Email====
+                        var smtpTransport = nodemailer.createTransport({
+                          host: 'mail.smtp2go.com',
+                          port: 2525,
+                          secure: false, 
+                          auth: {
+                                user: process.env.USR, 
+                                pass: process.env.PSWD 
+                            }
+                        });
+                        var mailOptions = {
+                          to: user.email,
+                          from: 'me@parshantdhall.cf',
+                          subject: 'Mountain APP Email Verification',
+                          text: 'You are receiving this because you (or someone else) have requested the Email verification for your account.\n\n' +
+                            'Please click on the following link, or paste this into your browser and also paste the secret token in the input field to complete the process:\n\n' +
+                            'http://' + req.headers.host + '/verify/' + user.username + '\n\n' +
+                            'Secret Token is = ' + user.secretToken + '\n\n' +
+                            'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                        };
+                        smtpTransport.sendMail(mailOptions, function(err) {
+                          if(err) {
+                            console.log(err);
+                          }
+                          console.log('mail sent');
+                          req.flash('success', 'Account created successfully and an e-mail has been sent to ' + user.email + ' with further instructions.');
+                          res.redirect("/register");
                         });
                     }
                 });
@@ -45,7 +72,7 @@
         res.render("login");
       });
 
-      router.post("/login", passport.authenticate("local", {
+      router.post("/login", middleware.isNotValid, passport.authenticate("local",{
           successRedirect: "/",
           failureRedirect: "/login"
       }) ,function(req, res) {});
@@ -57,6 +84,42 @@
           res.redirect("/");
       });
 
+      /* =========Verifying the email Configuration======= */
+
+      router.get("/verify/:username", function(req, res) {
+        User.findOne({username: req.params.username}, function(err, userFound) {
+          if(err) {
+            console.log(err);
+          }else {
+            res.render("verify", {userFound: userFound});
+          }
+        });
+      });
+
+      router.put("/verify/:username", function(req, res) {
+        //Finding the user from params and match the secret token
+          User.findOne({username: req.params.username} ,function(err, user) {
+            if(!user && err) {
+              req.flash("error", "User Not Found");
+              res.redirect("back");
+            }else if(user.secretToken === req.body.secretToken){ 
+              User.update({username: req.params.username}, {$set:{active: true}}, function(err, userUpdated){
+                if(err) {
+                  console.log(err);
+                }else {
+                  req.flash("sucess", "Email Confirmed Now you May login");
+                  res.redirect("/login");
+                }
+              });            
+            }
+            else {
+              req.flash("error", "Incorrect Secret Token");
+              res.redirect("back");
+            }
+          });
+      });
+
+      /* =========Verifying the email Configuration========== */
       //Forgot Password Configurations-------
       router.get("/forgot", function(req, res) {
           res.render("forgot");
@@ -91,13 +154,13 @@
                 port: 2525,
                 secure: false, // true for 465, false for other ports
                 auth: {
-                      user: process.env.USR, // generated ethereal user
-                      pass: process.env.PSWD // generated ethereal password
+                      user: process.env.USR, 
+                      pass: process.env.PSWD 
                   }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'support@mountainapp.com',
+                from: 'me@parshantdhall.cf',
                 subject: 'Node.js Password Reset',
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -158,13 +221,13 @@
                 port: 2525,
                 secure: false, // true for 465, false for other ports
                 auth: {
-                      user: 'parshantdhall', // generated ethereal user
-                      pass: 'Dhall@010' // generated ethereal password
+                      user: process.env.USR, 
+                      pass: process.env.PSWD 
                   }
               });
               var mailOptions = {
                 to: user.email,
-                from: 'support@mountainapp.com',
+                from: 'me@parshantdhall.cf',
                 subject: 'Your password has been changed',
                 text: 'Hello,\n\n' +
                   'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'

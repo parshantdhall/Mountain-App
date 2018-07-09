@@ -1,0 +1,14 @@
+<% include ./partials/header %>
+
+<div class="container">
+<h1 class="section-content__heading--primary">Verify Your Email</h1>
+<div class="section-content__end-line"></div>
+    <div class="container__form" >
+    <form action="/verify/<%= userFound.username %>?_method=PUT" method="POST" >
+    <input type="text" name="secretToken" placeholder="Enter your Secret Token" required>
+    <button type="Submit">Verify <i class="fas fa-arrow-right"></i></button>
+    </form>
+    </div>
+</div>
+
+<% include ./partials/footer %>
